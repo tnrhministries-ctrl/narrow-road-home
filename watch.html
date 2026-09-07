@@ -9,20 +9,20 @@
   :root{
     --navy-deep:#0E1F35; --navy:#173456; --blue-mid:#2C5C8F;
     --cream:#F7F5EF; --gold:#C9A961; --gold-light:#DDBE83;
-    --ink:#1B1F27; --ink-dim:#5B6572; --line-light:rgba(23,52,86,0.12);
+    --ink:#1B1F27; --ink-dim:#5B6572; --line-light:rgba(23,52,86,0.12); --line:rgba(255,255,255,0.18);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{background:var(--cream); color:var(--ink); font-family:'Source Sans 3', sans-serif; line-height:1.6;}
   h1,h2,h3{font-family:'Fraunces', serif; font-weight:700; line-height:1.15;}
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
 
-  nav{background:var(--navy-deep); display:flex; align-items:center; justify-content:space-between; padding:22px 32px;}
+  nav{background:var(--navy-deep); display:flex; align-items:center; justify-content:space-between; padding:22px 32px; flex-wrap:wrap; gap:12px;}
   .brand{font-family:'Fraunces', serif; font-size:1.15rem; font-weight:700; color:#fff;}
   .brand span{color:var(--gold-light);}
-  .nav-links{display:none; gap:28px; font-size:0.9rem; color:#fff; text-transform:uppercase; letter-spacing:0.03em;}
-  @media(min-width:860px){ .nav-links{display:flex;} }
-  .nav-links a:hover{color:var(--gold-light);}
+  .nav-right{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .cat-select{background:var(--navy); color:#fff; border:1px solid var(--line); padding:9px 12px; font-size:0.85rem; border-radius:2px;}
   .nav-cta{background:var(--gold); color:var(--navy-deep); padding:10px 20px; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; border-radius:2px;}
   .nav-cta:hover{background:var(--gold-light);}
 
@@ -30,16 +30,33 @@
   .page-hero h1{font-size:clamp(1.9rem,4vw,2.6rem); margin-bottom:12px;}
   .page-hero p{color:rgba(255,255,255,0.75); font-size:1.05rem; max-width:560px;}
 
-  .category{padding:56px 0; border-bottom:1px solid var(--line-light);}
+  .category{padding:56px 0; border-bottom:1px solid var(--line-light); scroll-margin-top:20px;}
   .category h2{font-size:1.5rem; color:var(--navy-deep); margin-bottom:6px;}
   .category .sub{color:var(--ink-dim); font-size:0.98rem; margin-bottom:28px;}
   .vgrid{display:grid; grid-template-columns:1fr; gap:18px;}
   @media(min-width:640px){ .vgrid{grid-template-columns:1fr 1fr;} }
   @media(min-width:980px){ .vgrid{grid-template-columns:repeat(3,1fr);} }
-  .vcard{display:block; border-radius:2px; overflow:hidden; background:var(--navy-deep);}
+  .vgrid.shorts{grid-template-columns:repeat(2,1fr);}
+  @media(min-width:640px){ .vgrid.shorts{grid-template-columns:repeat(4,1fr);} }
+  @media(min-width:980px){ .vgrid.shorts{grid-template-columns:repeat(6,1fr);} }
+  .vcard{display:block; border-radius:2px; overflow:hidden; background:var(--navy-deep); cursor:pointer;}
   .vthumb{aspect-ratio:16/9; background-size:cover; background-position:center; position:relative;}
+  .vcard.short .vthumb{aspect-ratio:9/16;}
   .vthumb::after{content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.6rem; background:rgba(14,31,53,0.15);}
+  .vcard iframe{width:100%; border:0; display:block;}
+  .vcard iframe.long{aspect-ratio:16/9;}
+  .vcard iframe.short{aspect-ratio:9/16;}
   .vcard p{color:var(--navy-deep); font-weight:600; font-size:0.95rem; padding:12px 14px 14px; background:#fff;}
+  .vcard.short p{font-size:0.8rem; padding:8px 10px 10px;}
+
+  .newsletter{background:var(--navy); padding:72px 0; text-align:center;}
+  .newsletter h2{color:#fff; font-size:clamp(1.6rem,3.2vw,2.1rem); margin-bottom:12px;}
+  .newsletter p{color:rgba(255,255,255,0.75); margin-bottom:26px; font-size:1.05rem; max-width:520px; margin-left:auto; margin-right:auto;}
+  .capture-form{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; max-width:480px; margin:0 auto;}
+  .capture-form input{flex:1; min-width:200px; background:rgba(255,255,255,0.08); border:1px solid var(--line); color:#fff; padding:15px 16px; font-size:1rem; border-radius:2px;}
+  .capture-form input::placeholder{color:rgba(255,255,255,0.55);}
+  .capture-form button{background:var(--gold); color:var(--navy-deep); border:none; padding:15px 26px; font-size:0.95rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; border-radius:2px; cursor:pointer;}
+  .capture-form button:hover{background:var(--gold-light);}
 
   footer{background:var(--navy-deep); padding:48px 24px; text-align:center; color:rgba(255,255,255,0.6); font-size:0.9rem;}
   footer a{color:var(--gold-light);}
@@ -49,104 +66,149 @@
 
 <nav>
   <div class="brand">The Narrow <span>Road</span> Home</div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="#about">About</a>
+  <div class="nav-right">
+    <select class="cat-select" onchange="if(this.value) location.hash=this.value;">
+      <option value="">Jump to a category…</option>
+      <option value="#overwhelmed">Feeling Overwhelmed or Anxious</option>
+      <option value="#doubt">Battling Doubt</option>
+      <option value="#discouraged">Ready to Give Up / Discouraged</option>
+      <option value="#temptation">Fighting Temptation</option>
+      <option value="#hope">Finding Hope &amp; Purpose</option>
+      <option value="#testimonies">Faith Testimonies</option>
+      <option value="#missions">Missionary Stories</option>
+    </select>
+    <a href="https://youtube.com/@thenarrowroadhome" target="_blank" class="nav-cta">Subscribe</a>
   </div>
-  <a href="https://youtube.com/@thenarrowroadhome" target="_blank" class="nav-cta">Subscribe on YouTube</a>
 </nav>
 
 <section class="page-hero">
   <div class="wrap">
     <h1>Find your fight.</h1>
-    <p>Every video here is organized by what you're walking through right now. Start wherever you need to.</p>
+    <p>You're not here to be entertained — you're here because something's heavy right now. Pick what fits, and watch right here, no leaving this page.</p>
   </div>
 </section>
 
-<section class="category">
+<section class="category" id="overwhelmed">
+  <div class="wrap">
+    <h2>Feeling Overwhelmed or Anxious</h2>
+    <p class="sub">When life feels like too much to carry.</p>
+    <div class="vgrid shorts">
+      <div class="vcard short" data-id="t5Cw9RogdWY" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/t5Cw9RogdWY/hqdefault.jpg')"></div><p>Overwhelmed? Under Attack?</p></div>
+      <div class="vcard short" data-id="pXM38XfLws0" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/pXM38XfLws0/hqdefault.jpg')"></div><p>Jesus CAN Stop The Storms in Your Life</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="doubt">
+  <div class="wrap">
+    <h2>Battling Doubt</h2>
+    <p class="sub">For when faith feels uncertain and questions won't stop.</p>
+    <div class="vgrid shorts">
+      <div class="vcard short" data-id="DSDtli3woZM" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/DSDtli3woZM/hqdefault.jpg')"></div><p>Know THIS When You Doubt God</p></div>
+      <div class="vcard short" data-id="NSGI7wFFf7w" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/NSGI7wFFf7w/hqdefault.jpg')"></div><p>Harvard Objectivist's Moment of Doubt</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="discouraged">
+  <div class="wrap">
+    <h2>Ready to Give Up / Discouraged</h2>
+    <p class="sub">When you feel like it's over, or nothing is working.</p>
+    <div class="vgrid shorts">
+      <div class="vcard short" data-id="bsWTZKDaW8U" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/bsWTZKDaW8U/hqdefault.jpg')"></div><p>Hear THIS Before You Give Up!</p></div>
+      <div class="vcard short" data-id="31Tj-wXrd1s" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/31Tj-wXrd1s/hqdefault.jpg')"></div><p>Feel Like It's Over?</p></div>
+      <div class="vcard short" data-id="zROwUMWo-4g" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/zROwUMWo-4g/hqdefault.jpg')"></div><p>Do THIS When Nothing Else Works</p></div>
+      <div class="vcard short" data-id="PAkltp2iguw" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/PAkltp2iguw/hqdefault.jpg')"></div><p>God's Delay Is Not God's Denial</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="temptation">
+  <div class="wrap">
+    <h2>Fighting Temptation</h2>
+    <p class="sub">Guarding your heart and mind in real, daily battles.</p>
+    <div class="vgrid shorts">
+      <div class="vcard short" data-id="GmAMauqKK3g" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/GmAMauqKK3g/hqdefault.jpg')"></div><p>Overcome Fear and Temptation</p></div>
+      <div class="vcard short" data-id="ZsHxLaky0Us" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/ZsHxLaky0Us/hqdefault.jpg')"></div><p>Guarding Your Heart in a Sinful World</p></div>
+      <div class="vcard short" data-id="fsK0VoCbbiU" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/fsK0VoCbbiU/hqdefault.jpg')"></div><p>Would You Gossip If THIS Happened?</p></div>
+    </div>
+    <div class="vgrid" style="margin-top:18px;">
+      <div class="vcard" data-id="er2VN0x0gfE" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/er2VN0x0gfE/hqdefault.jpg')"></div><p>Tired of the Cycle? Here's a Real Plan to Break Free</p></div>
+      <div class="vcard" data-id="UnjGlcMZJvc" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/UnjGlcMZJvc/hqdefault.jpg')"></div><p>What the Bible Really Says About Sex, Purity, and the Holy Spirit</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="hope">
+  <div class="wrap">
+    <h2>Finding Hope &amp; Purpose</h2>
+    <p class="sub">Reminders that God is still moving, even now.</p>
+    <div class="vgrid shorts">
+      <div class="vcard short" data-id="oM5xJAtefas" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/oM5xJAtefas/hqdefault.jpg')"></div><p>Keep Your Eyes on Jesus</p></div>
+      <div class="vcard short" data-id="A-far4lJpcY" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/A-far4lJpcY/hqdefault.jpg')"></div><p>How God's Word Can Speak Life</p></div>
+      <div class="vcard short" data-id="0rabMO9XVag" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/0rabMO9XVag/hqdefault.jpg')"></div><p>What He's Doing Will Change Many Lives</p></div>
+      <div class="vcard short" data-id="rccpVVZNbKs" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/rccpVVZNbKs/hqdefault.jpg')"></div><p>Has God Saved Someone in Your Family?</p></div>
+      <div class="vcard short" data-id="VRAABpS9eMU" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/VRAABpS9eMU/hqdefault.jpg')"></div><p>Navy Dad Surprises Son!</p></div>
+      <div class="vcard short" data-id="IwVlVxTiD00" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/IwVlVxTiD00/hqdefault.jpg')"></div><p>God Sent Me to the ER to Teach Me This</p></div>
+    </div>
+    <div class="vgrid" style="margin-top:18px;">
+      <div class="vcard" data-id="_YYRBmUpXLI" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/_YYRBmUpXLI/hqdefault.jpg')"></div><p>A Message for the Weary, the Struggling, and the Uncertain Christian</p></div>
+      <div class="vcard" data-id="qAn-WXtwaJg" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/qAn-WXtwaJg/hqdefault.jpg')"></div><p>PTSD, Trauma, and Faith: What Veterans Wish Civilians Understood</p></div>
+      <div class="vcard" data-id="BfjYhWGu1xE" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/BfjYhWGu1xE/hqdefault.jpg')"></div><p>Professor Explains Why Politics Has Become America's New Religion</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="testimonies">
   <div class="wrap">
     <h2>Faith Testimonies</h2>
     <p class="sub">Real people, real conversion, real proof God is still working.</p>
     <div class="vgrid">
-      <a class="vcard" href="https://youtube.com/watch?v=vPXVMapO6K0" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/vPXVMapO6K0/hqdefault.jpg')"></div>
-        <p>Harvard Ophthalmologist Converts to Christianity After This Airplane Ride</p>
-      </a>
-      <a class="vcard" href="https://youtube.com/watch?v=ntPOhhKKG0c" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/ntPOhhKKG0c/hqdefault.jpg')"></div>
-        <p>He Saw a Skit About Missing His Chance to Share Christ — Days Later, His Friend Died</p>
-      </a>
+      <div class="vcard" data-id="vPXVMapO6K0" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/vPXVMapO6K0/hqdefault.jpg')"></div><p>Harvard Ophthalmologist Converts to Christianity After This Airplane Ride</p></div>
+      <div class="vcard" data-id="ntPOhhKKG0c" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/ntPOhhKKG0c/hqdefault.jpg')"></div><p>He Saw a Skit About Missing His Chance to Share Christ — Days Later, His Friend Died</p></div>
     </div>
   </div>
 </section>
 
-<section class="category">
+<section class="category" id="missions" style="border-bottom:none;">
   <div class="wrap">
     <h2>Missionary Stories</h2>
     <p class="sub">Fighting for the forgotten, across the world.</p>
     <div class="vgrid">
-      <a class="vcard" href="https://youtube.com/watch?v=4QP-m3kBBg0" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/4QP-m3kBBg0/hqdefault.jpg')"></div>
-        <p>Missionary Reveals Japan's Hidden Orphan Crisis After 8 Years Living There</p>
-      </a>
+      <div class="vcard" data-id="4QP-m3kBBg0" onclick="playVid(this)"><div class="vthumb" style="background-image:url('https://img.youtube.com/vi/4QP-m3kBBg0/hqdefault.jpg')"></div><p>Missionary Reveals Japan's Hidden Orphan Crisis After 8 Years Living There</p></div>
     </div>
   </div>
 </section>
 
-<section class="category">
+<section class="newsletter">
   <div class="wrap">
-    <h2>Weary in the Battle</h2>
-    <p class="sub">Trauma, PTSD, and finding strength when you're running on empty.</p>
-    <div class="vgrid">
-      <a class="vcard" href="https://youtube.com/watch?v=qAn-WXtwaJg" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/qAn-WXtwaJg/hqdefault.jpg')"></div>
-        <p>PTSD, Trauma, and Faith: What Veterans Wish Civilians Understood</p>
-      </a>
-      <a class="vcard" href="https://youtube.com/watch?v=urLrv8JL01E" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/urLrv8JL01E/hqdefault.jpg')"></div>
-        <p>Overcome the Spiritual Battle for The Mind</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="category">
-  <div class="wrap">
-    <h2>Facing Addiction &amp; Freedom</h2>
-    <p class="sub">Honest conversations on purity, temptation, and real steps toward freedom.</p>
-    <div class="vgrid">
-      <a class="vcard" href="https://youtube.com/watch?v=er2VN0x0gfE" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/er2VN0x0gfE/hqdefault.jpg')"></div>
-        <p>Tired of the Cycle? Here's a Real Plan to Break Free</p>
-      </a>
-      <a class="vcard" href="https://youtube.com/watch?v=UnjGlcMZJvc" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/UnjGlcMZJvc/hqdefault.jpg')"></div>
-        <p>What the Bible Really Says About Sex, Purity, and the Holy Spirit</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="category" style="border-bottom:none;">
-  <div class="wrap">
-    <h2>Fighting Doubt &amp; Finding Purpose</h2>
-    <p class="sub">For when faith feels uncertain and you're wondering why you're here.</p>
-    <div class="vgrid">
-      <a class="vcard" href="https://youtube.com/watch?v=BfjYhWGu1xE" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/BfjYhWGu1xE/hqdefault.jpg')"></div>
-        <p>Professor Explains Why Politics Has Become America's New Religion</p>
-      </a>
-      <a class="vcard" href="https://youtube.com/watch?v=_YYRBmUpXLI" target="_blank">
-        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/_YYRBmUpXLI/hqdefault.jpg')"></div>
-        <p>A Message for the Weary, the Struggling, and the Uncertain Christian</p>
-      </a>
-    </div>
+    <h2>You're not alone in this fight.</h2>
+    <p>Get one weekly reminder of that, straight to your inbox — real encouragement for the battle you're in.</p>
+    <form class="capture-form">
+      <input type="email" placeholder="Your email address">
+      <button type="submit">Join the Fight</button>
+    </form>
   </div>
 </section>
 
 <footer>
   <p>The Narrow Road Home &nbsp;·&nbsp; <a href="https://youtube.com/@thenarrowroadhome" target="_blank">Watch on YouTube</a> &nbsp;·&nbsp; <a href="index.html">Home</a></p>
 </footer>
+
+<script>
+function playVid(card){
+  var id = card.getAttribute('data-id');
+  var thumb = card.querySelector('.vthumb');
+  var isShort = card.classList.contains('short');
+  var iframe = document.createElement('iframe');
+  iframe.className = isShort ? 'short' : 'long';
+  iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+  iframe.allow = 'autoplay; encrypted-media';
+  iframe.allowFullscreen = true;
+  thumb.replaceWith(iframe);
+  card.onclick = null;
+}
+</script>
 
 </body>
 </html>
