@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch — The Narrow Road Home</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+  :root{
+    --navy-deep:#0E1F35; --navy:#173456; --blue-mid:#2C5C8F;
+    --cream:#F7F5EF; --gold:#C9A961; --gold-light:#DDBE83;
+    --ink:#1B1F27; --ink-dim:#5B6572; --line-light:rgba(23,52,86,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--cream); color:var(--ink); font-family:'Source Sans 3', sans-serif; line-height:1.6;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:700; line-height:1.15;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+
+  nav{background:var(--navy-deep); display:flex; align-items:center; justify-content:space-between; padding:22px 32px;}
+  .brand{font-family:'Fraunces', serif; font-size:1.15rem; font-weight:700; color:#fff;}
+  .brand span{color:var(--gold-light);}
+  .nav-links{display:none; gap:28px; font-size:0.9rem; color:#fff; text-transform:uppercase; letter-spacing:0.03em;}
+  @media(min-width:860px){ .nav-links{display:flex;} }
+  .nav-links a:hover{color:var(--gold-light);}
+  .nav-cta{background:var(--gold); color:var(--navy-deep); padding:10px 20px; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; border-radius:2px;}
+  .nav-cta:hover{background:var(--gold-light);}
+
+  .page-hero{background:var(--navy-deep); padding:56px 0 48px; color:#fff;}
+  .page-hero h1{font-size:clamp(1.9rem,4vw,2.6rem); margin-bottom:12px;}
+  .page-hero p{color:rgba(255,255,255,0.75); font-size:1.05rem; max-width:560px;}
+
+  .category{padding:56px 0; border-bottom:1px solid var(--line-light);}
+  .category h2{font-size:1.5rem; color:var(--navy-deep); margin-bottom:6px;}
+  .category .sub{color:var(--ink-dim); font-size:0.98rem; margin-bottom:28px;}
+  .vgrid{display:grid; grid-template-columns:1fr; gap:18px;}
+  @media(min-width:640px){ .vgrid{grid-template-columns:1fr 1fr;} }
+  @media(min-width:980px){ .vgrid{grid-template-columns:repeat(3,1fr);} }
+  .vcard{display:block; border-radius:2px; overflow:hidden; background:var(--navy-deep);}
+  .vthumb{aspect-ratio:16/9; background-size:cover; background-position:center; position:relative;}
+  .vthumb::after{content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.6rem; background:rgba(14,31,53,0.15);}
+  .vcard p{color:var(--navy-deep); font-weight:600; font-size:0.95rem; padding:12px 14px 14px; background:#fff;}
+
+  footer{background:var(--navy-deep); padding:48px 24px; text-align:center; color:rgba(255,255,255,0.6); font-size:0.9rem;}
+  footer a{color:var(--gold-light);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">The Narrow <span>Road</span> Home</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="#about">About</a>
+  </div>
+  <a href="https://youtube.com/@thenarrowroadhome" target="_blank" class="nav-cta">Subscribe on YouTube</a>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Find your fight.</h1>
+    <p>Every video here is organized by what you're walking through right now. Start wherever you need to.</p>
+  </div>
+</section>
+
+<section class="category">
+  <div class="wrap">
+    <h2>Faith Testimonies</h2>
+    <p class="sub">Real people, real conversion, real proof God is still working.</p>
+    <div class="vgrid">
+      <a class="vcard" href="https://youtube.com/watch?v=vPXVMapO6K0" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/vPXVMapO6K0/hqdefault.jpg')"></div>
+        <p>Harvard Ophthalmologist Converts to Christianity After This Airplane Ride</p>
+      </a>
+      <a class="vcard" href="https://youtube.com/watch?v=ntPOhhKKG0c" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/ntPOhhKKG0c/hqdefault.jpg')"></div>
+        <p>He Saw a Skit About Missing His Chance to Share Christ — Days Later, His Friend Died</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="category">
+  <div class="wrap">
+    <h2>Missionary Stories</h2>
+    <p class="sub">Fighting for the forgotten, across the world.</p>
+    <div class="vgrid">
+      <a class="vcard" href="https://youtube.com/watch?v=4QP-m3kBBg0" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/4QP-m3kBBg0/hqdefault.jpg')"></div>
+        <p>Missionary Reveals Japan's Hidden Orphan Crisis After 8 Years Living There</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="category">
+  <div class="wrap">
+    <h2>Weary in the Battle</h2>
+    <p class="sub">Trauma, PTSD, and finding strength when you're running on empty.</p>
+    <div class="vgrid">
+      <a class="vcard" href="https://youtube.com/watch?v=qAn-WXtwaJg" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/qAn-WXtwaJg/hqdefault.jpg')"></div>
+        <p>PTSD, Trauma, and Faith: What Veterans Wish Civilians Understood</p>
+      </a>
+      <a class="vcard" href="https://youtube.com/watch?v=urLrv8JL01E" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/urLrv8JL01E/hqdefault.jpg')"></div>
+        <p>Overcome the Spiritual Battle for The Mind</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="category">
+  <div class="wrap">
+    <h2>Facing Addiction &amp; Freedom</h2>
+    <p class="sub">Honest conversations on purity, temptation, and real steps toward freedom.</p>
+    <div class="vgrid">
+      <a class="vcard" href="https://youtube.com/watch?v=er2VN0x0gfE" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/er2VN0x0gfE/hqdefault.jpg')"></div>
+        <p>Tired of the Cycle? Here's a Real Plan to Break Free</p>
+      </a>
+      <a class="vcard" href="https://youtube.com/watch?v=UnjGlcMZJvc" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/UnjGlcMZJvc/hqdefault.jpg')"></div>
+        <p>What the Bible Really Says About Sex, Purity, and the Holy Spirit</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="category" style="border-bottom:none;">
+  <div class="wrap">
+    <h2>Fighting Doubt &amp; Finding Purpose</h2>
+    <p class="sub">For when faith feels uncertain and you're wondering why you're here.</p>
+    <div class="vgrid">
+      <a class="vcard" href="https://youtube.com/watch?v=BfjYhWGu1xE" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/BfjYhWGu1xE/hqdefault.jpg')"></div>
+        <p>Professor Explains Why Politics Has Become America's New Religion</p>
+      </a>
+      <a class="vcard" href="https://youtube.com/watch?v=_YYRBmUpXLI" target="_blank">
+        <div class="vthumb" style="background-image:url('https://img.youtube.com/vi/_YYRBmUpXLI/hqdefault.jpg')"></div>
+        <p>A Message for the Weary, the Struggling, and the Uncertain Christian</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>The Narrow Road Home &nbsp;·&nbsp; <a href="https://youtube.com/@thenarrowroadhome" target="_blank">Watch on YouTube</a> &nbsp;·&nbsp; <a href="index.html">Home</a></p>
+</footer>
+
+</body>
+</html>
