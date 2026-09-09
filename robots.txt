@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tnrhministries-ctrl.github.io/narrow-road-home/sitemap.xml
