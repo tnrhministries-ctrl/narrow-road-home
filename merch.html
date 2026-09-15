@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merch — The Narrow Road Home</title>
+<meta name="description" content="Wear the fight. Shop TNRH apparel and gear — tees, hoodies, hats, and more.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+  :root{
+    --navy-deep:#0E1F35; --navy:#173456; --blue-mid:#2C5C8F;
+    --cream:#F7F5EF; --gold:#C9A961; --gold-light:#DDBE83;
+    --ink:#1B1F27; --ink-dim:#5B6572; --line-light:rgba(23,52,86,0.12); --line:rgba(255,255,255,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream); color:var(--ink); font-family:'Source Sans 3', sans-serif; line-height:1.6;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:700; line-height:1.15;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+
+  nav{background:var(--navy-deep); padding:22px 32px;}
+  .nav-top{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .brand{font-family:'Fraunces', serif; font-size:1.15rem; font-weight:700; color:#fff; white-space:nowrap;}
+  .brand span{color:var(--gold-light);}
+  .nav-links{display:flex; gap:20px; font-size:0.8rem; color:#fff; text-transform:uppercase; letter-spacing:0.02em; margin-top:12px;}
+  .nav-links a:hover{color:var(--gold-light);}
+  .nav-links a.active{color:var(--gold-light);}
+  .nav-cta{background:var(--gold); color:var(--navy-deep); padding:10px 20px; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; border-radius:2px; white-space:nowrap; flex-shrink:0;}
+  .nav-cta:hover{background:var(--gold-light);}
+
+  .page-hero{background:var(--navy-deep); padding:56px 0 48px; color:#fff;}
+  .page-hero h1{font-size:clamp(1.9rem,4vw,2.6rem); margin-bottom:12px;}
+  .page-hero p{color:rgba(255,255,255,0.75); font-size:1.05rem; max-width:560px;}
+
+  .note-banner{background:var(--gold); color:var(--navy-deep); padding:14px 0; text-align:center; font-weight:600; font-size:0.92rem;}
+
+  .shop{padding:64px 0 88px;}
+  .shop-section{margin-bottom:56px;}
+  .shop-section h2{font-size:1.4rem; color:var(--navy-deep); margin-bottom:4px;}
+  .shop-section .sub{color:var(--ink-dim); font-size:0.95rem; margin-bottom:24px;}
+  .pgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+  @media(min-width:640px){ .pgrid{grid-template-columns:repeat(3,1fr);} }
+  @media(min-width:980px){ .pgrid{grid-template-columns:repeat(4,1fr);} }
+
+  .pcard{background:#fff; border-radius:4px; overflow:hidden; box-shadow:0 1px 3px rgba(23,52,86,0.1); display:flex; flex-direction:column;}
+  .pcard .pimg{width:100%; aspect-ratio:1/1; background:#111 center/cover no-repeat; background-size:cover;}
+  .pcard .pbody{padding:14px 16px 18px; flex:1; display:flex; flex-direction:column;}
+  .pcard h3{font-size:0.98rem; font-family:'Source Sans 3',sans-serif; font-weight:700; color:var(--navy-deep); margin-bottom:4px;}
+  .pcard .desc{font-size:0.82rem; color:var(--ink-dim); margin-bottom:10px; flex:1;}
+  .pcard .price{font-weight:700; color:var(--gold); font-size:0.95rem; margin-bottom:12px;}
+  .buy-btn{display:block; text-align:center; background:var(--navy-deep); color:#fff; padding:10px; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; border-radius:2px; border:none; cursor:pointer; width:100%;}
+  .buy-btn:hover{background:var(--navy);}
+
+  .belief{background:var(--navy-deep); padding:64px 0; text-align:center;}
+  .belief h2{color:#fff; font-size:clamp(1.4rem, 3vw, 1.9rem); max-width:700px; margin:0 auto 12px;}
+  .belief p{color:rgba(255,255,255,0.7); max-width:560px; margin:0 auto;}
+
+  footer{background:var(--navy-deep); border-top:1px solid var(--line); padding:48px 24px; text-align:center; color:rgba(255,255,255,0.6); font-size:0.9rem;}
+  footer a{color:var(--gold-light);}
+  .footer-links{background:var(--navy); padding:18px 0; text-align:center;}
+  .footer-links .wrap{display:flex; flex-wrap:wrap; gap:14px 22px; justify-content:center; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.02em;}
+  .footer-links a{color:rgba(255,255,255,0.75);}
+  .footer-links a:hover{color:var(--gold-light);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-top">
+    <div class="brand">The <span>Narrow Road</span> Home</div>
+    <a href="index.html#capture" class="nav-cta">Subscribe</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="watch.html">Watch</a>
+    <a href="testimonies.html">Testimonies</a>
+    <a href="merch.html" class="active">Merch</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.paypal.com/paypalme/TheNarrowRoadHome" target="_blank" rel="noopener">Give</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Wear the fight.</h1>
+    <p>Gear for men who've decided to stand firm. Every piece carries the message — Born on the battlefield, not by choice, but by design.</p>
+  </div>
+</section>
+
+<div class="note-banner">
+  🛠️ Store setup in progress — fulfillment through Printful. Buttons below will go live once checkout is connected.
+</div>
+
+<section class="shop">
+  <div class="wrap">
+
+    <div class="shop-section">
+      <h2>Apparel</h2>
+      <p class="sub">Tees and hoodies built for daily wear.</p>
+      <div class="pgrid">
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/battlefield-tee.png')"></div>
+          <div class="pbody">
+            <h3>Born on the Battlefield Tee</h3>
+            <p class="desc">Black, heavyweight cotton.</p>
+            <p class="price">$28.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/chest-tee.png')"></div>
+          <div class="pbody">
+            <h3>TNRH Chest Tee</h3>
+            <p class="desc">Olive, Comfort Colors tee.</p>
+            <p class="price">$24.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/stand-firm-hoodie.png')"></div>
+          <div class="pbody">
+            <h3>Stand Firm Hoodie</h3>
+            <p class="desc">Washed charcoal, premium fleece.</p>
+            <p class="price">$48.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/war-already-won-tee.png')"></div>
+          <div class="pbody">
+            <h3>The War Is Already Won Tee</h3>
+            <p class="desc">Sand, vintage-look print.</p>
+            <p class="price">$28.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/keep-fighting-tee.png')"></div>
+          <div class="pbody">
+            <h3>Keep Fighting Tee</h3>
+            <p class="desc">Black, heavyweight cotton.</p>
+            <p class="price">$28.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/work-jacket.png')"></div>
+          <div class="pbody">
+            <h3>TNRH Work Jacket</h3>
+            <p class="desc">Black, durable canvas, back print.</p>
+            <p class="price">$65.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="shop-section">
+      <h2>Headwear</h2>
+      <p class="sub">Trucker hats, beanies, and patches.</p>
+      <div class="pgrid">
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/trucker-hat.png')"></div>
+          <div class="pbody">
+            <h3>TNRH Trucker Hat</h3>
+            <p class="desc">Black, embroidered patch.</p>
+            <p class="price">$26.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/battlefield-hat.png')"></div>
+          <div class="pbody">
+            <h3>Battlefield Hat</h3>
+            <p class="desc">Olive, patch front.</p>
+            <p class="price">$26.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/knit-beanie.png')"></div>
+          <div class="pbody">
+            <h3>Knit Beanie</h3>
+            <p class="desc">Black, leather patch.</p>
+            <p class="price">$22.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/morale-patch.png')"></div>
+          <div class="pbody">
+            <h3>TNRH Morale Patch</h3>
+            <p class="desc">Tactical, velcro-backed.</p>
+            <p class="price">$12.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="shop-section">
+      <h2>Everyday Gear</h2>
+      <p class="sub">Carry it with you wherever the fight takes you.</p>
+      <div class="pgrid">
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/tumbler.png')"></div>
+          <div class="pbody">
+            <h3>TNRH Tumbler</h3>
+            <p class="desc">Stainless steel, laser engraved.</p>
+            <p class="price">$30.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pimg" style="background-image:url('images/merch/sticker.png')"></div>
+          <div class="pbody">
+            <h3>TNRH Sticker</h3>
+            <p class="desc">Die cut, weatherproof.</p>
+            <p class="price">$5.00</p>
+            <button class="buy-btn" onclick="alert('Store opening soon — check back shortly!')">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="belief">
+  <div class="wrap">
+    <h2>Every piece funds the mission.</h2>
+    <p>Proceeds from TNRH gear go straight back into producing more conversations like the ones you've watched here — reaching more men who feel like they're fighting alone.</p>
+  </div>
+</section>
+
+<div class="footer-links">
+  <div class="wrap">
+    <a href="start-here.html">Start Here</a>
+    <a href="letters.html">Devotional</a>
+    <a href="prayer.html">Prayer Request</a>
+    <a href="faith.html">Statement of Faith</a>
+  </div>
+</div>
+<footer>
+  <p>The Narrow Road Home &nbsp;·&nbsp; <a href="https://www.paypal.com/paypalme/TheNarrowRoadHome" target="_blank" rel="noopener">Support the Mission</a> &nbsp;·&nbsp; <a href="contact.html">Contact</a></p>
+</footer>
+
+</body>
+</html>
