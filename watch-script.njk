@@ -1,0 +1,200 @@
+var NRH_SEARCH_INDEX = {{ videos | toSearchIndexJSON | safe }};
+var NRH_BYID = {};
+var NRH_BYCAT = {};
+NRH_SEARCH_INDEX.forEach(function(v){
+  NRH_BYID[v.id] = v;
+  if(!NRH_BYCAT[v.c]) NRH_BYCAT[v.c] = [];
+  NRH_BYCAT[v.c].push(v.id);
+});
+var nrhCurrent = null; // {id, cat, origin}
+
+function nrhSlide(btn, dir){
+  var row = btn.closest('.nrh-vslider-row');
+  var track = row.querySelector('.nrh-vslider');
+  track.scrollBy({left: track.clientWidth * 0.85 * dir, behavior: 'smooth'});
+}
+window.nrhSlide = nrhSlide;
+function openVideo(id, isShort, cat, origin){
+  nrhCurrent = {id: id, cat: cat, origin: origin};
+  var box = document.getElementById('lightbox');
+  var inner = document.getElementById('lightbox-inner');
+  inner.className = 'nrh-lightbox-inner ' + (isShort ? 'short' : 'long');
+  // enablejsapi + origin let us hear the "video ended" event via postMessage
+  // below, so the next video in this list can start on its own.
+  var originParam = encodeURIComponent(window.location.origin || '*');
+  var src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&enablejsapi=1&playsinline=1&rel=0&origin=' + originParam;
+  var arrows = '';
+  if(cat && NRH_BYCAT[cat] && NRH_BYCAT[cat].length > 1){
+    arrows = '<button class="nrh-lightbox-arrow prev" aria-label="Previous video" onclick="nrhNextVideo(-1)">&larr;</button>' +
+             '<button class="nrh-lightbox-arrow next" aria-label="Next video" onclick="nrhNextVideo(1)">&rarr;</button>';
+  }
+  var v = NRH_BYID[id];
+  var placeLabel = origin === 'nrh-search-results' ? 'Search Results' : (v && v.cn ? v.cn : 'Topics');
+  var backBtn = origin ? '<button class="nrh-lb-btn ghost" onclick="backToList()"><span aria-hidden="true">&larr;</span> Back to ' + placeLabel + '</button>' : '';
+  // Always-visible way out of the video: the YouTube player itself has its own
+  // clickable elements (related videos, channel links, etc.) that can carry a
+  // visitor off this page entirely. These two buttons give them an obvious,
+  // well-sized path back into the site no matter what happens inside the embed.
+  var controls = '<div class="nrh-lightbox-controls">' +
+      '<button class="nrh-lb-btn fill" onclick="browseAllTopics()">&#9776; Browse by Topic</button>' +
+      backBtn +
+    '</div>';
+  inner.innerHTML = '<button class="nrh-lightbox-close" onclick="closeLightbox()">&times;</button>' +
+    arrows +
+    '<iframe class="nrh-lightbox-frame" id="nrh-lightbox-iframe" src="' + src + '" allow="autoplay; encrypted-media" allowfullscreen></iframe>' +
+    controls;
+  box.classList.add('open');
+  var frame = document.getElementById('nrh-lightbox-iframe');
+  if(frame){
+    frame.addEventListener('load', function(){
+      try { frame.contentWindow.postMessage(JSON.stringify({event:'listening', id:1}), '*'); } catch(err){}
+    });
+  }
+}
+function nrhNextVideo(dir){
+  if(!nrhCurrent) return;
+  var list = NRH_BYCAT[nrhCurrent.cat];
+  var origin = nrhCurrent.origin;
+  if(!list || list.length < 2){
+    // Only one video in this list — replay it so playback never just stops.
+    var v0 = NRH_BYID[nrhCurrent.id];
+    if(v0) openVideo(nrhCurrent.id, v0.s, nrhCurrent.cat, origin);
+    return;
+  }
+  var i = list.indexOf(nrhCurrent.id);
+  var next = list[(i + dir + list.length) % list.length];
+  var v = NRH_BYID[next];
+  openVideo(next, v.s, nrhCurrent.cat, origin);
+}
+window.nrhNextVideo = nrhNextVideo;
+function playVid(card){
+  var id = card.getAttribute('data-id');
+  var isShort = card.classList.contains('short');
+  var cat = card.getAttribute('data-cat');
+  openVideo(id, isShort, cat, cat);
+}
+function backToList(){
+  var origin = nrhCurrent ? nrhCurrent.origin : null;
+  closeLightbox();
+  if(origin){
+    var el = document.getElementById(origin);
+    if(el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+}
+window.backToList = backToList;
+function browseAllTopics(){
+  closeLightbox();
+  var el = document.getElementById('nrh-topics-top');
+  if(el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+window.browseAllTopics = browseAllTopics;
+function closeLightbox(){
+  var box = document.getElementById('lightbox');
+  var inner = document.getElementById('lightbox-inner');
+  box.classList.remove('open');
+  inner.innerHTML = '';
+  nrhCurrent = null;
+}
+window.playVid = playVid;
+window.openVideo = openVideo;
+window.closeLightbox = closeLightbox;
+document.querySelectorAll('.nrh-vcard').forEach(function(card){
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  var titleEl = card.querySelector('p');
+  var title = titleEl ? titleEl.textContent.trim() : 'video';
+  card.setAttribute('aria-label', 'Play video: ' + title);
+  card.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){
+      e.preventDefault();
+      playVid(card);
+    }
+  });
+});
+document.getElementById('lightbox').addEventListener('click', function(e){
+  if(e.target === this){ closeLightbox(); }
+});
+// When the lightbox video reaches its end, automatically move on to the
+// next one in the same list, so a viewer can leave it open and keep
+// watching without having to press anything.
+window.addEventListener('message', function(e){
+  var data = e.data;
+  if(typeof data !== 'string') return;
+  var msg;
+  try { msg = JSON.parse(data); } catch(err){ return; }
+  var state;
+  if(msg.event === 'onStateChange') state = msg.info;
+  else if(msg.event === 'infoDelivery' && msg.info && typeof msg.info.playerState === 'number') state = msg.info.playerState;
+  if(state === 0){ nrhNextVideo(1); }
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ closeLightbox(); }
+});
+
+// ---- Topic / transcript search ----
+(function(){
+  var input = document.getElementById('nrh-search-input');
+  var results = document.getElementById('nrh-search-results');
+  if(!input || !results) return;
+
+  function renderResults(items, query){
+    if(!query){
+      results.innerHTML = '';
+      results.classList.remove('open');
+      return;
+    }
+    if(items.length === 0){
+      results.innerHTML = '<div class="nrh-search-empty">No videos found for &ldquo;' + query + '&rdquo; &mdash; try a different word.</div>';
+      results.classList.add('open');
+      return;
+    }
+    var html = items.slice(0, 60).map(function(v){
+      return '<div class="nrh-search-result" data-id="' + v.id + '" data-short="' + v.s + '" data-cat="' + v.c + '">' +
+        '<div class="nrh-search-thumb" style="background-image:url(\'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg\')"></div>' +
+        '<div class="nrh-search-meta"><p class="nrh-search-result-title">' + v.t + '</p>' +
+        '<span class="nrh-search-result-cat">' + v.cn + '</span></div></div>';
+    }).join('');
+    results.innerHTML = html;
+    results.classList.add('open');
+    results.querySelectorAll('.nrh-search-result').forEach(function(el){
+      el.addEventListener('click', function(){
+        openVideo(el.getAttribute('data-id'), el.getAttribute('data-short') === 'true', el.getAttribute('data-cat'), 'nrh-search-results');
+      });
+    });
+  }
+
+  function search(query){
+    var words = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if(words.length === 0) return [];
+    return NRH_SEARCH_INDEX.filter(function(v){
+      return words.every(function(w){ return v.kw.indexOf(w) !== -1; });
+    });
+  }
+
+  var debounceTimer;
+  input.addEventListener('input', function(){
+    clearTimeout(debounceTimer);
+    var query = input.value.trim();
+    debounceTimer = setTimeout(function(){
+      renderResults(search(query), query);
+    }, 120);
+  });
+  document.addEventListener('click', function(e){
+    // Use composedPath (captured at dispatch time) rather than e.target.closest,
+    // since a lightbox button (like "Back to List") can remove itself from the
+    // DOM as part of handling its own click, which would otherwise make
+    // closest() lose track of where the click actually happened.
+    var path = e.composedPath ? e.composedPath() : [e.target];
+    var inLightbox = path.some(function(el){ return el.classList && el.classList.contains('nrh-lightbox'); });
+    if(!e.target.closest('.nrh-search-box') && !e.target.closest('.nrh-search-results') && !e.target.closest('.nrh-topic-chip') && !inLightbox){
+      results.classList.remove('open');
+    }
+  });
+
+  window.runTopicSearch = function(term){
+    input.value = term;
+    renderResults(search(term), term);
+    input.scrollIntoView({behavior: 'smooth', block: 'center'});
+    input.focus();
+  };
+})();
