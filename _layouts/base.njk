@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta property="og:title" content="{{ ogTitle or title }}">
+<meta property="og:description" content="{{ ogDescription or description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:site_name" content="The Narrow Road Home">
+<meta property="og:image" content="{{ ogImage or (site.url + '/images/hero-desktop.jpg') }}">
+<meta property="og:image:width" content="1672">
+<meta property="og:image:height" content="941">
+<meta property="og:image:alt" content="A lantern-lit path through the mountains at dusk — The Narrow Road Home">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ ogTitle or title }}">
+<meta name="twitter:description" content="{{ ogDescription or description }}">
+<meta name="twitter:image" content="{{ ogImage or (site.url + '/images/hero-desktop.jpg') }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{% if schema %}<script type="application/ld+json">
+{{ schema | safe }}
+</script>
+{% endif %}<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNCAyNiIgZmlsbD0ibm9uZSI+CiAgPHJlY3Qgd2lkdGg9IjM0IiBoZWlnaHQ9IjI2IiByeD0iNCIgZmlsbD0iIzBiMTUyNCIvPgogIDxwYXRoIGQ9Ik00IDIyIEwxMiA4IEwxNiAxNCBMMjAgNSBMMzAgMjIiIHN0cm9rZT0iI2Q5YjQ2YSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="no-js">
+{% include "nav.njk" %}
+<main>
+{{ content | safe }}
+</main>
+{% include "footer.njk" %}
+<script type="module">
+
+  document.body.classList.remove('no-js');
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if(menuBtn && mobileMenu){
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    mobileMenu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
+  const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+  function fallbackReveal() { document.body.classList.add('motion-fallback'); }
+  const safety = setTimeout(fallbackReveal, 1500);
+  try {
+    const { animate, inView } = await import('https://cdn.jsdelivr.net/npm/motion@11/+esm');
+    clearTimeout(safety);
+    document.body.classList.add('motion-ready');
+    const heroEls = document.querySelectorAll('.nrh-pagehero [data-reveal]');
+    heroEls.forEach((el) => {
+      const delay = parseFloat(el.style.transitionDelay || '0') || 0;
+      animate(el, { opacity: [0, 1], y: [22, 0] }, { duration: 0.7, delay, easing: [0.22, 1, 0.36, 1] });
+    });
+    inView('[data-reveal-scroll]', ({ target }) => {
+      animate(target, { opacity: [0, 1], y: [18, 0] }, { duration: 0.7, easing: 'ease-out' });
+    });
+  } catch (err) {
+    clearTimeout(safety);
+    fallbackReveal();
+    console.warn('Motion library unavailable, using fallback reveal.', err);
+  }
+
+function nrhHandleDevotionalForm(form){
+  var encode = function(data){
+    return Object.keys(data).map(function(k){return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);}).join("&");
+  };
+  var email = form.querySelector('input[name="email"]').value;
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encode({ "form-name": "devotional-signup", email: email })
+  }).then(function(){
+    form.querySelector(".nrh-devform-row").style.display = "none";
+    var note = form.querySelector(".nrh-devform-note"); if(note) note.hidden = true;
+    form.querySelector(".nrh-devform-success").hidden = false;
+  }).catch(function(){
+    form.submit();
+  });
+  return false;
+}
+window.nrhHandleDevotionalForm = nrhHandleDevotionalForm;
+
+{% if extraScriptInclude %}{% include extraScriptInclude %}
+{% endif %}</script>
+</body>
+</html>

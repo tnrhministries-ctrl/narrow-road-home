@@ -1,0 +1,104 @@
+---
+layout: base.njk
+permalink: prayer.html
+title: "Prayer — The Narrow Road Home"
+description: "You're not alone in this. Share what you're carrying and let Daniel pray with you — in confidence, no matter how big or small."
+ogImage: "https://www.thenarrowroadhome.com/images/hero-desktop.jpg"
+---
+
+<section class="nrh-pagehero">
+  <div class="nrh-pagehero-photo" aria-hidden="true"><img src="images/path-forest.jpg" alt="" loading="eager"></div>
+  <div class="wrap nrh-pagehero-inner">
+    <div class="nrh-eyebrow" data-reveal>The Narrow Road Home</div>
+    <h1 data-reveal style="transition-delay:.05s">You&rsquo;re not alone in this.</h1>
+    <p class="lede" data-reveal style="transition-delay:.12s">There are things we can say to God that we can&rsquo;t say to anyone else.</p>
+    <p class="body" data-reveal style="transition-delay:0.18s">There are burdens we don&rsquo;t know how to explain. There are nights when all we can manage is, &ldquo;God, please help me.&rdquo; That&rsquo;s a prayer too.</p><p class="body" data-reveal style="transition-delay:0.26s">If there&rsquo;s something you&rsquo;re carrying &mdash; for yourself or for someone you love &mdash; you can share it here. Daniel will read your request and pray for you. You don&rsquo;t have to have the right words. You don&rsquo;t have to explain everything. Just tell us what&rsquo;s on your heart.</p>
+    
+  </div>
+</section>
+
+<section class="nrh-section nrh-on-cream">
+  <div class="wrap-narrow">
+    <div style="background:#fff; border:1px solid rgba(217,180,106,0.25); border-left:3px solid var(--gold); border-radius:4px; padding:36px 34px;" data-reveal-scroll>
+      <p style="color:rgba(32,36,29,0.85); font-size:1.02rem; line-height:1.75; margin-bottom:26px;">Sending your request goes straight to Daniel by email, and it stays between you and him &mdash; it is not posted publicly.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px;">
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Health</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Family</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Marriage</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Children</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Faith</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Fear</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Grief</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">The Future</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Temptation</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Loneliness</span>
+        <span style="border:1px solid rgba(32,36,29,0.15); border-radius:20px; padding:8px 16px; font-size:0.8rem; color:rgba(32,36,29,0.7);">Something You Can&rsquo;t Stop Thinking About</span>
+      </div>
+      <form name="prayer-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="prayer-form">
+        <input type="hidden" name="form-name" value="prayer-request" />
+        <p style="position:absolute; left:-9999px;"><label>Leave this field blank: <input name="bot-field" /></label></p>
+        <div style="margin-bottom:16px;">
+          <label for="pr-name" style="display:block; font-size:0.82rem; color:rgba(32,36,29,0.7); margin-bottom:6px;">Your name (optional)</label>
+          <input type="text" id="pr-name" name="name" style="width:100%; padding:12px 14px; border:1px solid rgba(32,36,29,0.2); border-radius:4px; font-family:inherit; font-size:1rem; color:var(--ink); background:#fff;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label for="pr-email" style="display:block; font-size:0.82rem; color:rgba(32,36,29,0.7); margin-bottom:6px;">Your email (optional &mdash; only if you&rsquo;d like a reply)</label>
+          <input type="email" id="pr-email" name="email" style="width:100%; padding:12px 14px; border:1px solid rgba(32,36,29,0.2); border-radius:4px; font-family:inherit; font-size:1rem; color:var(--ink); background:#fff;">
+        </div>
+        <div style="margin-bottom:22px;">
+          <label for="pr-message" style="display:block; font-size:0.82rem; color:rgba(32,36,29,0.7); margin-bottom:6px;">What&rsquo;s on your heart?</label>
+          <textarea id="pr-message" name="message" rows="5" required style="width:100%; padding:12px 14px; border:1px solid rgba(32,36,29,0.2); border-radius:4px; font-family:inherit; font-size:1rem; color:var(--ink); background:#fff; resize:vertical;"></textarea>
+        </div>
+        <button type="submit" class="nrh-btn-fill" style="border:none; cursor:pointer; font:inherit;">Send a Prayer Request</button>
+        <p id="prayer-form-status" role="status" style="margin-top:16px; font-size:0.92rem; display:none;"></p>
+      </form>
+      <script>
+      (function(){
+        var form = document.getElementById('prayer-form');
+        if(!form) return;
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          var status = document.getElementById('prayer-form-status');
+          var btn = form.querySelector('button[type="submit"]');
+          btn.disabled = true;
+          fetch('/prayer.html', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams(new FormData(form)).toString()
+          }).then(function(res){
+            if(!res.ok) throw new Error('bad response');
+            Array.prototype.forEach.call(form.querySelectorAll('input, textarea'), function(el){
+              if(el.type !== 'hidden') el.style.display = 'none';
+            });
+            Array.prototype.forEach.call(form.querySelectorAll('label'), function(el){ el.style.display = 'none'; });
+            btn.style.display = 'none';
+            status.style.display = 'block';
+            status.style.color = 'var(--forest)';
+            status.textContent = "Thank you \u2014 your prayer request has been sent. It\u2019s between you and Daniel.";
+          }).catch(function(){
+            btn.disabled = false;
+            status.style.display = 'block';
+            status.style.color = '#b3261e';
+            status.textContent = 'Something went wrong sending this. Please try again, or email tnrhministries@gmail.com directly.';
+          });
+        });
+      })();
+      </script>
+      <div style="margin-top:32px; padding-top:26px; border-top:1px solid rgba(32,36,29,0.1);">
+        <p class="nrh-verse">&ldquo;The Lord is close to the brokenhearted and saves those who are crushed in spirit.&rdquo;</p>
+        <p class="nrh-verse-ref">Psalm 34:18</p>
+      </div>
+    </div>
+
+    <div style="margin-top:36px; padding:22px 24px; background:#fff; border-radius:4px; border:1px solid rgba(32,36,29,0.08);">
+      <p style="color:rgba(32,36,29,0.6); font-size:0.9rem; line-height:1.65;">A note: this ministry offers prayer and Christian encouragement, not medical or mental-health treatment. If you are in crisis or in danger right now, please contact a local emergency service or a crisis line in your area, or reach out to a licensed counselor. You are not a burden, and getting that kind of help alongside prayer is a wise and good step.</p>
+    </div>
+  </div>
+</section>
+<section class="nrh-nextstep">
+  <div class="wrap">
+    <h2>Not sure where to start?</h2>
+    <p>Find the conversation that fits what you&rsquo;re facing right now.</p>
+    <div class="nrh-nextstep-actions"><a href="start-here.html" class="nrh-btn-fill">Start Here</a><a href="watch.html" class="nrh-btn-ghost">Watch Videos</a></div>
+  </div>
+</section>

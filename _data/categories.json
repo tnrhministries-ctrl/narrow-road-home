@@ -1,0 +1,68 @@
+[
+  {
+    "id": "overwhelmed",
+    "title": "Feeling Overwhelmed or Anxious",
+    "sub": "When life feels like too much to carry.",
+    "hasLong": false
+  },
+  {
+    "id": "doubt",
+    "title": "Doubting or Strengthening Your Faith",
+    "sub": "For when you're questioning, doubting, or just need reassurance in God&rsquo;s promises.",
+    "hasLong": false
+  },
+  {
+    "id": "discouraged",
+    "title": "Ready to Give Up / Discouraged",
+    "sub": "When you feel like it's over, or nothing is working.",
+    "hasLong": false
+  },
+  {
+    "id": "temptation",
+    "title": "Fighting Temptation",
+    "sub": "Guarding your heart and mind in real, daily battles.",
+    "hasLong": false
+  },
+  {
+    "id": "weary",
+    "title": "Weary in the Battle",
+    "sub": "Trauma, PTSD, and finding strength when you're running on empty.",
+    "hasLong": true
+  },
+  {
+    "id": "family",
+    "title": "Parenting &amp; Family",
+    "sub": "Practical, faith-filled encouragement for raising your kids and leading your home.",
+    "hasLong": false
+  },
+  {
+    "id": "forgiveness",
+    "title": "Forgiveness &amp; Letting Go",
+    "sub": "Real stories and Biblical truth about receiving and giving forgiveness, even when it feels impossible.",
+    "hasLong": false
+  },
+  {
+    "id": "hope",
+    "title": "Finding Hope &amp; Purpose",
+    "sub": "Reminders that God is still moving, even now.",
+    "hasLong": true
+  },
+  {
+    "id": "politics",
+    "title": "Faith, Politics &amp; Culture",
+    "sub": "Navigating elections, current events, and cultural moments with an eternal perspective.",
+    "hasLong": false
+  },
+  {
+    "id": "testimonies",
+    "title": "Faith Testimonies",
+    "sub": "Real people, real conversion, real proof God is still working.",
+    "hasLong": true
+  },
+  {
+    "id": "missions",
+    "title": "Missionary Stories",
+    "sub": "Fighting for the forgotten, across the world.",
+    "hasLong": true
+  }
+]

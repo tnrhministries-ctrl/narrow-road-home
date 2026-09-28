@@ -1,0 +1,11 @@
+[
+  { "href": "/index.html", "label": "Home" },
+  { "href": "/about.html", "label": "About" },
+  { "href": "/walk-the-road.html", "label": "Walk the Road" },
+  { "href": "/watch.html", "label": "Watch" },
+  { "href": "/testimonies.html", "label": "Testimonies" },
+  { "href": "/merch.html", "label": "Merch" },
+  { "href": "/letters.html", "label": "Devotional" },
+  { "href": "/contact.html", "label": "Contact" },
+  { "href": "/subscribe.html", "label": "Subscribe", "cls": "nrh-nav-subscribe" }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "the-narrow-road-home",
+  "version": "1.0.0",
+  "description": "Source for thenarrowroadhome.com — built with Eleventy, deployed on Netlify.",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

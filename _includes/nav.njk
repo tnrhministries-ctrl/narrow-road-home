@@ -1,0 +1,24 @@
+<header class="nrh-nav" id="site-nav">
+  <div class="wrap nrh-nav-inner">
+    <a href="/index.html" class="nrh-brand" aria-label="The Narrow Road Home — homepage">
+      <svg class="nrh-logo-mark" width="30" height="23" viewBox="0 0 34 26" fill="none" aria-hidden="true">
+        <path d="M1 24 L10 8 L14.5 15 L19 5 L33 24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <span class="nrh-brand-text">
+        <span class="nrh-brand-title">The Narrow Road Home</span>
+        <span class="nrh-brand-tag">Hope for the road you're walking</span>
+      </span>
+    </a>
+    <nav class="nrh-links" aria-label="Primary">
+      {% for item in navLinks %}<a href="{{ item.href }}"{% if item.href == page.url %} class="{{ (item.cls + ' is-active') if item.cls else 'is-active' }}"{% elif item.cls %} class="{{ item.cls }}"{% else %} class=""{% endif %}>{{ item.label }}</a>
+      {% endfor %}<a href="https://www.paypal.com/paypalme/TheNarrowRoadHome" target="_blank" rel="noopener" class="nrh-nav-cta">Give</a>
+    </nav>
+    <button class="nrh-menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nrh-mobile-menu" id="mobile-menu" aria-label="Mobile">
+    {% for item in navLinks %}<a href="{{ item.href }}"{% if item.href == page.url %} class="{{ (item.cls + ' is-active') if item.cls else 'is-active' }}"{% elif item.cls %} class="{{ item.cls }}"{% else %} class=""{% endif %}>{{ item.label }}</a>
+    {% endfor %}<a href="https://www.paypal.com/paypalme/TheNarrowRoadHome" target="_blank" rel="noopener" class="nrh-mobile-cta">Give</a>
+  </nav>
+</header>

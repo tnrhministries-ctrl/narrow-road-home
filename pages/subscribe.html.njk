@@ -1,0 +1,39 @@
+---
+layout: base.njk
+permalink: subscribe.html
+title: "Subscribe — The Narrow Road Home"
+description: "Subscribe to get the next devotional, new videos, and prayer updates from The Narrow Road Home — straight to your inbox."
+ogImage: "https://www.thenarrowroadhome.com/images/hero-desktop.jpg"
+---
+
+
+<section class="nrh-subband no-hero">
+  <div class="nrh-subband-photo" aria-hidden="true"><img src="images/path-city.jpg" alt=""></div>
+  <div class="wrap">
+    <div class="nrh-subband-inner" data-reveal-scroll>
+      <div class="nrh-subband-eyebrow">Stay on the Road</div>
+      <h1>Join the List</h1>
+      <p class="lede">Belong to something bigger. Pick what you&rsquo;d like to hear about and Daniel will keep you posted &mdash; nothing more, nothing less.</p>
+      <form name="subscribe" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="nrh-subform" onsubmit="return nrhHandleSubscribeForm(this)">
+  <input type="hidden" name="form-name" value="subscribe">
+  <p hidden><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
+  <div class="nrh-subform-fields">
+    <input type="text" name="name" placeholder="Full name" aria-label="Full name">
+    <input type="email" name="email" required placeholder="Email address" aria-label="Email address">
+    <p class="nrh-subform-catlabel">What would you like to hear about?</p>
+    <div class="nrh-subform-cats">
+      <label><input type="checkbox" name="interest" value="Weekly Devotional"> Weekly Devotional</label>
+      <label><input type="checkbox" name="interest" value="New Videos"> New Videos</label>
+      <label><input type="checkbox" name="interest" value="Prayer Team Updates"> Prayer Team Updates</label>
+    </div>
+  </div>
+  <div class="nrh-subform-submitrow">
+    <button type="submit">Subscribe</button>
+    <p class="nrh-subform-note">No spam, ever &mdash; unsubscribe anytime.</p>
+  </div>
+  <p class="nrh-subform-success" hidden>You&rsquo;re on the list &mdash; thank you. Watch your inbox.</p>
+</form>
+      <p style="margin-top:26px; font-size:0.85rem; color:rgba(247,242,231,0.6); text-align:center;"><a href="letters.html" style="color:var(--gold-light);">Read past devotionals &rarr;</a></p>
+    </div>
+  </div>
+</section>

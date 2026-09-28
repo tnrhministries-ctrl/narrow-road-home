@@ -1,0 +1,57 @@
+---
+layout: base.njk
+permalink: watch.html
+title: "Watch — The Narrow Road Home"
+description: "Find your fight. Real conversations for whatever you're facing — overwhelmed, doubting, discouraged, tempted, weary, or hoping for more. Watch by category."
+extraScriptInclude: watch-script.njk
+---
+<h1 class="sr-only">Watch — Real Conversations for Whatever You&rsquo;re Facing</h1>
+
+
+<section class="nrh-search-band">
+  <div class="wrap-narrow">
+    <h2 class="nrh-search-title">What Are You Facing Today?</h2>
+    <p class="nrh-search-sub">Search any topic, feeling, or word &mdash; anxiety, PTSD, forgiveness, parenting, doubt &mdash; and jump straight to a video.</p>
+    <div class="nrh-search-box">
+      <svg class="nrh-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="nrh-search-input" class="nrh-search-input" placeholder="Try &ldquo;overwhelmed&rdquo;, &ldquo;veterans&rdquo;, &ldquo;forgiveness&rdquo;&hellip;" autocomplete="off">
+    </div>
+  </div>
+  <div class="nrh-search-results wrap" id="nrh-search-results"></div>
+</section>
+<section class="nrh-cat-tabs-band">
+  <div class="wrap">
+    <h2 class="nrh-cat-tabs-title">Browse by Topic</h2>
+    <div class="nrh-cat-tabs nrh-topic-grid">
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('overwhelmed')">Overwhelmed</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('anxious')">Anxious</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('fear')">Fear</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('doubt')">Doubt</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('discouraged')">Discouraged</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('temptation')">Temptation</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('spiritual warfare')">Spiritual Warfare</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('addiction')">Addiction</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('weary')">Weary</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('ptsd')">PTSD</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('veterans')">Veterans</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('parenting')">Parenting</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('family')">Family</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('marriage')">Marriage</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('forgiveness')">Forgiveness</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('hope')">Hope</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('purpose')">Purpose</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('encouragement')">Encouragement</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('politics')">Politics</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('testimonies')">Testimonies</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('salvation')">Salvation</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('apologetics')">Apologetics</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('missionary')">Missionary Stories</button>
+      <button type="button" class="nrh-topic-chip" onclick="runTopicSearch('orphans')">Orphans</button>
+    </div>
+  </div>
+</section>
+{% for cat in categories %}{% include "cat-block.njk" %}
+{% endfor %}
+<div class="nrh-lightbox" id="lightbox">
+  <div class="nrh-lightbox-inner" id="lightbox-inner"></div>
+</div>

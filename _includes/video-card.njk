@@ -1,0 +1,1 @@
+{%- macro card(v) -%}<div class="nrh-vcard{{ ' short' if v.short }}" data-id="{{ v.id }}" data-cat="{{ v.cat }}" onclick="playVid(this)"><div class="nrh-vthumb" style="background-image:url('https://img.youtube.com/vi/{{ v.id }}/hqdefault.jpg')"></div><p>{{ v.title }}</p></div>{%- endmacro -%}

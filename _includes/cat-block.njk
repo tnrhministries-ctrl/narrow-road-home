@@ -1,0 +1,18 @@
+{% import "video-card.njk" as vc %}
+<section class="nrh-cat-block" id="{{ cat.id }}">
+  <div class="wrap">
+    <h2 class="nrh-cat-title">{{ cat.title | safe }}</h2>
+    <p class="nrh-cat-sub">{{ cat.sub | safe }}</p>
+    <span class="nrh-swipe-hint">Swipe for more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <div class="nrh-vslider-row">
+  <button class="nrh-vslider-arrow prev" aria-label="Scroll left" onclick="nrhSlide(this,-1)">&larr;</button>
+  <div class="nrh-vslider">{% for v in videos %}{% if v.cat == cat.id and v.short %}{{ vc.card(v) }}{% endif %}{% endfor %}</div>
+  <button class="nrh-vslider-arrow next" aria-label="Scroll right" onclick="nrhSlide(this,1)">&rarr;</button>
+</div>
+{% if cat.hasLong %}    <div class="nrh-vslider-row">
+  <button class="nrh-vslider-arrow prev" aria-label="Scroll left" onclick="nrhSlide(this,-1)">&larr;</button>
+  <div class="nrh-vslider long">{% for v in videos %}{% if v.cat == cat.id and not v.short %}{{ vc.card(v) }}{% endif %}{% endfor %}</div>
+  <button class="nrh-vslider-arrow next" aria-label="Scroll right" onclick="nrhSlide(this,1)">&rarr;</button>
+</div>
+{% endif %}  </div>
+</section>
